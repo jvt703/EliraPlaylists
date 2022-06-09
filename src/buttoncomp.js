@@ -1,18 +1,18 @@
 import React from "react";
+import { Button } from "antd";
 
-const Buttoncomp = ({item})=>{
+
+const Buttoncomp = ()=>{
     const log =(e)=>{
         e.preventDefault()
         console.log("this clicks")
+     
     }
-    console.log(item,'here????')
-    return <div>
-      <h2>{item}</h2>
-      <video id="videoPlayer" width="650" controls  >
-        <source src={`http://localhost:8000/video/${item}`} type="video/mp4"/>
-    </video>
+
+
+    return <Button id='Header_Logo' type='ghost' size='large' onClick={log} >HoloStreams</Button>
   
-    </div>
+    
    
 }
 

@@ -1,0 +1,60 @@
+#app {
+    height: 100%;
+}
+#Header_Logo {
+    color: rgb(255, 255, 255);
+    margin-top: auto;
+    margin-left: 5%;
+
+}
+.ant-layout-header{
+    background-color: rgb(2, 45, 85);
+}
+
+.ant-layout-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-height: 70%;
+    flex: 1 1 auto;
+    flex-direction: row;
+}
+.sideBar {
+    background-color: #121111;
+    color: white;
+    text-align: left;
+    margin-left: 50%;
+}
+.OuterVideoDescription{
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    height: 100%;
+    width: 20%;
+    position: relative;
+    
+}
+.SoloVideoDescription {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 80%;
+    position: relative;
+
+}
+.video-responsive {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.thevideo {
+    position: absolute;
+    padding: 5px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
