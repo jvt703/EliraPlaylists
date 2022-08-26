@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import  ReactDOM  from 'react-dom';
 import Buttoncomp from './buttoncomp';
@@ -14,37 +14,39 @@ const items = [
  
 ];
 
-const App =()=> {
-  const list = ['korone_forever','Gura_Cute']
-    // return <div>
-    //     Hello world? 
-    //     {list ? list.map((item)=>{
-    //         console.log(item)
-    //         return <Buttoncomp item={item}/>
-    //     }):null
-    // }
+
+const App =()=> {    
+  const [titles,updateTitles] = useState([])
+  const [thumbnail,updateThumbnail] = useState([])
+  const [items,updateItems] = useState([])
+  const load =async()=>{
+    let response = await fetch(`https://youtube.googleapis.com/youtube/v3/search?order=date&part=snippet&type=video&channelId=UCoSrY_IQQVpmIRZ9Xf-y93g&key=${'AIzaSyAhsn7gVnEBFTW8_NaoHDmja3YmBex1vDA'}`)
+        // .then(response=> response.json())
+        // .then(data=>{
+        //     updateItems(data.items)
+        //     console.log(data)
+        // })
+       let data = await response.json()
+       updateItems(data.items)
+}
+  useEffect(()=> load(),[])
+    
     return (
         <Router>
             
             <Routes>
             <Route path="/" 
-            element={ <Toolbar/>}
-            //element=
-            // { list ? list.map((item)=>{
-            // return  <Buttoncomp item={item}/>}):null}
-            
+            element={ <Toolbar items={items}/>} 
             >
                 
             </Route>
-            <Route path='/watch/:videoId' element={ <Toolbar/>}>
+            <Route path='/watch/:videoId' element={ <Toolbar  items={items}/>}>
 
             </Route>
             </Routes>
 
         </Router>)
         
-
- 
 }
 
 

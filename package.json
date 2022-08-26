@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.20.7",
+    "axios": "^0.27.2",
     "buffer": "^6.0.3",
     "cors": "^2.8.5",
     "googleapis": "^101.0.0",
@@ -18,7 +19,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.0",
     "stream": "0.0.2"
   },
   "browser": {
@@ -42,6 +43,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {},
   "description": ""
 }

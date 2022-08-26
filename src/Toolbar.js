@@ -11,7 +11,8 @@ import Buttoncomp from './buttoncomp'
 import { useParams } from 'react-router-dom'
 
 const { Header, Content, Sider } = Layout;
-const videos = ['gywvR9Erfl8','nCQ_zZIiGLA', '9KVH2ZP060c', '5J7dshcivGg', '-vOjy-igzhk']
+const videos = ['gywvR9Erfl8']
+// ,'nCQ_zZIiGLA', '9KVH2ZP060c', '5J7dshcivGg', '-vOjy-igzhk'
 
 const items = [
   {
@@ -23,7 +24,8 @@ const items = [
 
 const sidebarLabels = [
       {
-    label: 'Home',
+    label: <a href="/favorites" target="_self" rel="noopener noreferrer" style={{color: 'white'}}>
+      Favorites</a>,
     key: 'Home',
     icon: <HomeOutlined/>
   },
@@ -33,12 +35,13 @@ const sidebarLabels = [
     icon: <UnorderedListOutlined />
   },
   {
-    label: 'Favorites',
+    label: <a href="/favorites" target="_self" rel="noopener noreferrer" style={{color: 'white'}}>
+      Favorites</a>,
     key: 'Favorites',
     icon: <HeartOutlined />
   }
 ]
-const Toolbar = ()=>{
+const Toolbar = ({items})=>{
     const {videoId} = useParams()
     return  <Layout
     style={{
@@ -48,7 +51,7 @@ const Toolbar = ()=>{
         <Header >
 
         {/* <Button id='Header_Logo' type='ghost' size='large'>HoloStreams</Button> */}
-        <Buttoncomp></Buttoncomp>
+        <Buttoncomp ></Buttoncomp>
         </Header>
         <Layout
         >
@@ -98,12 +101,16 @@ const Toolbar = ()=>{
                 <span>Title: {videoId}</span>
                 <YoutubeEmbed className='contents' embedId={videoId}/>
                 </div>
-            :videos.map(videoId=>{return <div 
+            :items.map(items=>{return <div 
             style={{
             color: "#fff9"}}
-            className='OuterVideoDescription'> 
-                <span>Title: {videoId}</span>
-                <YoutubeEmbed className='contents' embedId={videoId}/>
+            className='OuterVideoDescription'
+            key={items.id.videoId}> 
+                <div>{items.snippet.title}</div>
+                <a href={`/watch/${items.id.videoId}`}>
+                <img src={items.snippet.thumbnails.medium.url}></img>
+                </a>
+                {/* <YoutubeEmbed className='contents' embedId={videoId}/> */}
                 </div>})}
         </Content>
       </Layout>
