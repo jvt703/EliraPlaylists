@@ -1,12 +1,13 @@
 import react from "react";
 import { Fragment } from "react/cjs/react.production.min";
 
-let Minividcomp = ({ playlists, Thekey }) => {
+let Minividcomp = ({ playlist, Thekey }) => {
+    console.log('mini', playlist)
   return (
     <div className="playlistscreen">
     
       <div className="minivid">
-        {playlists[Thekey].map((items) => {
+        {playlist.map((items) => {
           return (
             <div
               style={{
