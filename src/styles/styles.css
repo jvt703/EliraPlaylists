@@ -32,6 +32,8 @@
     height: 100%;
     width: 20%;
     position: relative;
+    margin-left: 10px;
+    
     
 }
 .SoloVideoDescription {
@@ -59,16 +61,20 @@
 
 .Playlists {
     display: flex;
+    overflow-x: auto;
     flex-direction: row;
 }
 
+.Playlists::-webkit-scrollbar {
+    display: none;
+}
 .minivid {
     display: flex;
+    margin-left: 10px;
 
 }
 
 .playlistscreen {
-    font-size: larger;
     color: antiquewhite;
     display: flex;
     flex-direction: column;
