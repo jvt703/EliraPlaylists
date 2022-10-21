@@ -4,7 +4,7 @@ import { Fragment } from "react/cjs/react.production.min";
 let Minividcomp = ({ playlist, Thekey }) => {
     console.log('mini', playlist)
   return (
-    <div className="playlistscreen">
+  
     
       <div className="minivid">
         {playlist.map((items) => {
@@ -27,7 +27,6 @@ let Minividcomp = ({ playlist, Thekey }) => {
         })}
         ;
       </div>
-    </div>
   );
 };
 

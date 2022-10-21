@@ -61,8 +61,10 @@
 
 .Playlists {
     display: flex;
-    overflow-x: auto;
-    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: visible;
+    flex-direction: column;
+    color: rgb(236, 239, 241);
 }
 
 .Playlists::-webkit-scrollbar {
@@ -72,4 +74,22 @@
     display: flex;
     margin-left: 10px;
 
+}
+
+.Playlistscreen {
+    display: flex;
+        overflow-x: scroll;
+        overflow-y: visible;
+        flex-direction: row;
+        height: 300px
+}
+.Playlistscreen::-webkit-scrollbar {
+    display: none;
+}
+.Playlisttitle {
+    color: aliceblue;
+}
+.Playlistssub {
+    display: flex;
+    flex-direction: column;
 }
