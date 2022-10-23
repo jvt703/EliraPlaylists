@@ -23,33 +23,31 @@ const App =()=> {
   const [thumbnail,updateThumbnail] = useState([])
   const [items,updateItems] = useState([])
   const [playlists, updatePlaylists] = useState({})
+  const [VideoName, updateVideoName] = useState('TEST')
 
   const load =async()=>{
-    let response = await fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails%2Cid&playlistId=PLcGP7PjybiCPpipQNJeuODyZoRerPv5Tk&key=${'AIzaSyAhsn7gVnEBFTW8_NaoHDmja3YmBex1vDA'}`)
+    let response = await fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails%2Cid&maxResults=5&playlistId=PLcGP7PjybiCPpipQNJeuODyZoRerPv5Tk&key=${'AIzaSyAhsn7gVnEBFTW8_NaoHDmja3YmBex1vDA'}`)
       
        let data = await response.json()
-       console.log(data)
+    console.log(data,"P")
        let obj = {'PLcGP7PjybiCPpipQNJeuODyZoRerPv5Tk':data.items}
+       //we should be binding the playlist name not playlist ID as the key
        updatePlaylists(obj)
-       console.log(obj,">>>>>>")
        updateItems(data.items)
 }
-  useEffect(()=> load(),[])
-
-  const compilePlaylists = () =>{
-    
-  }
+  useEffect(()=> load()
+  ,[])
     
     return (
         <Router>
             
             <Routes>
             <Route path="/" 
-            element={ <Toolbar items={items} playlists={playlists}/>} 
+            element={ <Toolbar items={items} playlists={playlists} VideoName={VideoName} updateVideoName={updateVideoName}/>} 
             >
                 
             </Route>
-            <Route path='/watch/:videoId' element={ <Toolbar  items={items}/>}>
+            <Route path='/watch/:videoId' element={ <Toolbar  items={items} VideoName={VideoName} updateVideoName={updateVideoName}/>}>
 
             </Route>
             </Routes>

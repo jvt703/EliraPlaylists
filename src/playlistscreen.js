@@ -3,12 +3,12 @@ import Minividcomp from "./minividcomp";
 import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 
-const Playlistscreen  = ({playlist}) =>{
+const Playlistscreen  = ({playlist, updateVideoName, VideoName}) =>{
    const ref = useRef();
   const { events } = useDraggable(ref);
     return (
         <div className="Playlistscreen" {...events} ref={ref}>
-        <Minividcomp playlist = {playlist} />
+        <Minividcomp playlist = {playlist}  VideoName={VideoName} updateVideoName={updateVideoName} />
         </div>
 
     )

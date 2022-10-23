@@ -57,8 +57,8 @@ const sidebarLabels = [
     icon: <HeartOutlined />,
   },
 ];
-const Toolbar = ({ items, playlists }) => {
-  console.log(playlists, "toolbar");
+const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
+  console.log(VideoName,"toobar")
   const { videoId } = useParams();
   return (
     <Layout
@@ -67,7 +67,7 @@ const Toolbar = ({ items, playlists }) => {
         height: "100%",
       }}
     >
-      <Header>
+      <Header className="Header">
         {/* <Button id='Header_Logo' type='ghost' size='large'>HoloStreams</Button> */}
         <Buttoncomp></Buttoncomp>
       </Header>
@@ -123,11 +123,11 @@ const Toolbar = ({ items, playlists }) => {
                 }}
                 className="SoloVideoDescription"
               >
-                <span>Title: {videoId}</span>
-                <YoutubeEmbed className="contents" embedId={videoId} />
+                <span>Title: {VideoName}</span>
+                <YoutubeEmbed className="contents" VideoName={VideoName} embedId={videoId} />
               </div>
             ) : (
-              <Playlistcomp playlists={playlists} />
+              <Playlistcomp playlists={playlists} VideoName={VideoName} updateVideoName={updateVideoName} />
             )}
           </Content>
         </Layout>

@@ -1,25 +1,29 @@
-import react from "react";
+import react, { useEffect } from "react";
 import { Fragment } from "react/cjs/react.production.min";
-
-let Minividcomp = ({ playlist, Thekey }) => {
-    console.log('mini', playlist)
+import {BrowserRouter as Router, Link} from 'react-router-dom'
+let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
+    const clickHandler = (e, items) => {
+       
+        updateVideoName(items)
+    }
+    console.log(playlist,">>>>>>>>>")
   return (
   
     
-      <div className="minivid">
-        {playlist.map((items) => {
+      <div className="minivid" >
+        {playlist.map((items, index) => {
+
           return (
             <div
               style={{
                 color: "#fff9",
               }}
               className="OuterVideoDescription"
-              key={items.id.videoId}
+              key={index}
             >
-              
-              <a href={`/watch/${items.id.videoId}`}>
+              <Link onClick={event=> clickHandler(event,items.snippet.title)} to={`/watch/${items.snippet.resourceId.videoId}`}>
                 <img src={items.snippet.thumbnails.medium.url}></img>
-              </a>
+              </Link>
               <div>{items.snippet.title}</div>
               {/* <YoutubeEmbed className='contents' embedId={videoId}/> */}
             </div>
