@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout, Menu, Breadcrumb, Button, Divider } from "antd";
-import styles from "./styles/Toolbar.less";
+import styles from "../styles/Toolbar.less";
 import YoutubeEmbed from "./screencomp";
 import {
   HomeOutlined,

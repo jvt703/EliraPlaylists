@@ -12,6 +12,7 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
     
       <div className="minivid" >
         {playlist.map((items, index) => {
+          console.log(items, 'items')
 
           return (
             <div
@@ -21,15 +22,14 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
               className="OuterVideoDescription"
               key={index}
             >
-              <Link onClick={event=> clickHandler(event,items.snippet.title)} to={`/watch/${items.snippet.resourceId.videoId}`}>
-                <img src={items.snippet.thumbnails.medium.url}></img>
+              <Link onClick={event=> clickHandler(event,items.snippet.title)} to={`/watch/${items.PlaylistId}`}>
+                <img src={items.videourl}></img>
               </Link>
-              <div>{items.snippet.title}</div>
-              {/* <YoutubeEmbed className='contents' embedId={videoId}/> */}
+              <div>{items.videoname}</div>
+          
             </div>
-          );
+          )
         })}
-        ;
       </div>
   );
 };

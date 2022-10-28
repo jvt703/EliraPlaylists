@@ -10,7 +10,7 @@ const Playlistcomp = ({ playlists, updateVideoName, VideoName}) => {
     <div className="Playlists" >
       {Object.keys(playlists).map((key, index) => {
         return (<div key={index}>
-        <h3 className="Playlisttitle">Playlist: {key}</h3>
+        <h3 className="Playlisttitle">{key}</h3>
         <Playlistscreen playlist={playlists[key]} VideoName={VideoName} updateVideoName={updateVideoName}/>
         </div>) 
       })}

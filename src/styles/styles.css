@@ -37,8 +37,7 @@
     flex-direction: column;
     max-height: 200px;
     height: 100%;
-    width: 20%;
-    position: relative;
+    width: 320px;
 
     
     
@@ -80,12 +79,11 @@
 .minivid {
     display: flex;
     gap: 20px;
-    justify-content: flex-start;
+    justify-content: flex-start;    
 
 }
 
 .Playlistscreen {
-    display: flex;
         overflow-x: scroll;
         overflow-y: visible;
         flex-direction: row;
@@ -95,9 +93,10 @@
     display: none;
 }
 .Playlisttitle {
-    color: aliceblue;
+    color: black;
 }
 .Playlistssub {
     display: flex;
     flex-direction: column;
 }
+    

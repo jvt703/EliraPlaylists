@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import  ReactDOM  from 'react-dom';
-import Buttoncomp from './buttoncomp';
-import Toolbar from './Toolbar';
+import Buttoncomp from './Components/buttoncomp';
+import Toolbar from './Components/Toolbar';
 import 'antd/dist/antd.css';
 import './styles/styles.css'
+import axios from 'axios';
 const items = [
   {
     label: 'Navigation One',
@@ -26,14 +27,15 @@ const App =()=> {
   const [VideoName, updateVideoName] = useState('TEST')
 
   const load =async()=>{
-    let response = await fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails%2Cid&maxResults=5&playlistId=PLcGP7PjybiCPpipQNJeuODyZoRerPv5Tk&key=${'AIzaSyAhsn7gVnEBFTW8_NaoHDmja3YmBex1vDA'}`)
+    let response = await fetch(`http://localhost:3001/app/playlists/allplaylists`)
       
        let data = await response.json()
-    console.log(data,"P")
+   
        let obj = {'PLcGP7PjybiCPpipQNJeuODyZoRerPv5Tk':data.items}
        //we should be binding the playlist name not playlist ID as the key
-       updatePlaylists(obj)
-       updateItems(data.items)
+       console.log(obj)
+       updatePlaylists(data)
+       updateItems(data)
 }
   useEffect(()=> load()
   ,[])
