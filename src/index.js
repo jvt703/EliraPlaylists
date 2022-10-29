@@ -49,7 +49,7 @@ const App =()=> {
             >
                 
             </Route>
-            <Route path='/watch/:videoId' element={ <Toolbar  items={items} VideoName={VideoName} updateVideoName={updateVideoName}/>}>
+            <Route path='/watch/:videoId' element={ <Toolbar  items={items} />}>
 
             </Route>
             </Routes>

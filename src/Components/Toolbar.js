@@ -58,7 +58,6 @@ const sidebarLabels = [
   },
 ];
 const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
-  console.log(VideoName,"toobar")
   const { videoId } = useParams();
   return (
     <Layout

@@ -6,13 +6,11 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
        
         updateVideoName(items)
     }
-    console.log(playlist,">>>>>>>>>")
   return (
   
     
       <div className="minivid" >
         {playlist.map((items, index) => {
-          console.log(items, 'items')
 
           return (
             <div
