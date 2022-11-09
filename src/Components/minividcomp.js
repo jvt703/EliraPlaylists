@@ -15,7 +15,7 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
           return (
             <div
               style={{
-                color: "#fff9",
+                color: "#000",
               }}
               className="OuterVideoDescription"
               key={index}

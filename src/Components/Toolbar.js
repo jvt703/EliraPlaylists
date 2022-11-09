@@ -17,8 +17,8 @@ const videos = ["gywvR9Erfl8"];
 
 const items = [
   {
-    label: "HoloStreams",
-    key: "HoloStreams",
+    label: "EliraPage",
+    key: "EliraPage",
   },
 ];
 
@@ -67,7 +67,7 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
       }}
     >
       <Header className="Header">
-        {/* <Button id='Header_Logo' type='ghost' size='large'>HoloStreams</Button> */}
+        
         <Buttoncomp></Buttoncomp>
       </Header>
       <Layout>
@@ -91,24 +91,8 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
             padding: "0 24px 24px",
             backgroundColor: "#001529",
           }}
+          className="MainContent"
         >
-          <Breadcrumb
-            style={{
-              margin: "16px 0px",
-              color: "#fff9",
-            }}
-            separator="/"
-          >
-            <Breadcrumb.Item>Live/Upcoming</Breadcrumb.Item>
-            <Breadcrumb.Item
-              style={{
-                color: "#fff9",
-              }}
-            >
-              Clips
-            </Breadcrumb.Item>
-          </Breadcrumb>
-
           <Content
             style={{
               padding: 24,

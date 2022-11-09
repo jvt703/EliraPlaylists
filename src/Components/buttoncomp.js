@@ -6,7 +6,7 @@ const Buttoncomp = ()=>{
     
 
 
-    return <Link to='/'><Button id='Header_Logo' type='ghost' size='large'  >HoloStreams</Button> </Link>
+    return <Link to='/'><Button id='Header_Logo' type='ghost' size='large'  >EliraPage</Button> </Link>
   
     
    
