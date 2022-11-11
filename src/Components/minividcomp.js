@@ -11,7 +11,7 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
     
       <div className="minivid" >
         {playlist.map((items, index) => {
-
+          console.log(items, "???")
           return (
             <div
               style={{
@@ -20,7 +20,7 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
               className="OuterVideoDescription"
               key={index}
             >
-              <Link onClick={event=> clickHandler(event,items.snippet.title)} to={`/watch/${items.PlaylistId}`}>
+              <Link onClick={event=> clickHandler(event,items.snippet.title)} to={`/watch/${items.videoid}`}>
                 <img src={items.videourl}></img>
               </Link>
               <div>{items.videoname}</div>

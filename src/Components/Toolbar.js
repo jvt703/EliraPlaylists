@@ -87,10 +87,10 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
         </Sider>
 
         <Layout
-          style={{
-            padding: "0 24px 24px",
-            backgroundColor: "#001529",
-          }}
+          // style={{
+          //   padding: "0 24px 24px",
+          //   backgroundColor: "#001529",
+          // }}
           className="MainContent"
         >
           <Content
