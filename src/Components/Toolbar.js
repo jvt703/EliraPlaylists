@@ -57,9 +57,10 @@ const sidebarLabels = [
     icon: <HeartOutlined />,
   },
 ];
-const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
+const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, setUserId, setUserToken, setMyEmail  }) => {
   const { videoId } = useParams();
   const [OpenModal, updateOpenModal] = useState(false)
+ 
   return (
     <Layout
       style={{
@@ -67,7 +68,12 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
         height: "100%",
       }}
     >
-      {OpenModal&&<RegisterModal updateOpenModal={updateOpenModal}></RegisterModal>}
+      {OpenModal&&<RegisterModal 
+      setUserToken ={setUserToken}
+      setMyEmail ={setMyEmail}
+      setMyUsername ={setMyUsername}
+      setUserId ={setUserId}
+      updateOpenModal={updateOpenModal}></RegisterModal>}
       <Header className="Header">
         
         <Buttoncomp></Buttoncomp>

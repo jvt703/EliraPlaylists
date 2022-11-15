@@ -1,6 +1,12 @@
 import { React, useRef, useState } from "react";
 
-const RegisterModal = ({ updateOpenModal }) => {
+const RegisterModal = ({
+  updateOpenModal,
+  setMyUsername,
+  setUserId,
+  setUserToken,
+  setMyEmail,
+}) => {
   const modalRef = useRef();
   const [registerObjData, setregisterObjData] = useState({});
 
@@ -17,50 +23,41 @@ const RegisterModal = ({ updateOpenModal }) => {
 
   const registerHandler = async (e) => {
     e.preventDefault();
-    try{
-        if (registerObjData.password.length < 8) {
-            alert("Password Must Be At Least 8 Characters");
-            } else {
-            const response = await fetch(`http://localhost:3001/app/users/register`, {
-                method: "POST",
-                headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify(registerObjData),
-            })
-            
-            let data = await response.json()
-            console.log(data.user,"????")
-            if(data.user){
-                const token = await data.token;
-                const userId = await data.user.id
-                const myUsername = await data.user.username
-                const email = await  data.user.email
-                setUserToken(token);
-                setMyUsername(myUsername);
-                setUserId(userId);
-                setMyEmail(email);
-                localStorage.setItem('userToken', token);
-                localStorage.setItem('isAdmin', admin);
-                localStorage.setItem('myUsername', JSON.stringify(myUsername));
-                localStorage.setItem('userId', userId);
-                localStorage.setItem('email', email);
+    try {
+      if (registerObjData.password.length < 8) {
+        alert("Password Must Be At Least 8 Characters");
+      } else {
+        const response = await fetch(
+          `http://localhost:3001/app/users/register`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(registerObjData),
+          }
+        );
 
-
-
-            }
-            else{
-
-            }
-            }
-
-
-    }
-    catch{
-
-    }
-    
-      
+        let data = await response.json();
+        console.log(data.user, "????");
+        if (data.user) {
+          const token = await data.token;
+          const userId = await data.user.id;
+          const myUsername = await data.user.username;
+          const email = await data.user.email;
+          setUserToken(token);
+          setMyUsername(myUsername);
+          setUserId(userId);
+          setMyEmail(email);
+          localStorage.setItem("userToken", token);
+          localStorage.setItem("myUsername", JSON.stringify(myUsername));
+          localStorage.setItem("userId", userId);
+          localStorage.setItem("email", email);
+          location.reload()
+        } else {
+        }
+      }
+    } catch {}
   };
 
   return (
