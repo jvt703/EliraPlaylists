@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { Layout, Menu, Breadcrumb, Button, Divider } from "antd";
 import styles from "../styles/Toolbar.less";
 import YoutubeEmbed from "./screencomp";
@@ -10,7 +10,7 @@ import {
 import Buttoncomp from "./buttoncomp";
 import { useParams } from "react-router-dom";
 import Playlistcomp from "./Playlistcomps";
-
+import RegisterModal from "./registerModal";
 const { Header, Content, Sider } = Layout;
 const videos = ["gywvR9Erfl8"];
 // ,'nCQ_zZIiGLA', '9KVH2ZP060c', '5J7dshcivGg', '-vOjy-igzhk'
@@ -59,6 +59,7 @@ const sidebarLabels = [
 ];
 const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
   const { videoId } = useParams();
+  const [OpenModal, updateOpenModal] = useState(false)
   return (
     <Layout
       style={{
@@ -66,9 +67,11 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName }) => {
         height: "100%",
       }}
     >
+      {OpenModal&&<RegisterModal updateOpenModal={updateOpenModal}></RegisterModal>}
       <Header className="Header">
         
         <Buttoncomp></Buttoncomp>
+        <button onClick={()=>{updateOpenModal(true)}}>REGISTER</button>
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">

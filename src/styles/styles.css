@@ -119,3 +119,32 @@
     top: 0;
     z-index: 999;
 }
+
+.modalBackground {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(200,200,200,.5);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modalContainer {
+    width: 500px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: white;
+    opacity: 1;
+    box-shadow: rgba(0,0,0,0.35) 0px 5px 15px;  
+}
+
+.modalClosebutton {
+    display: flex;
+    justify-content: flex-end;
+}
+.modalClosebutton button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}

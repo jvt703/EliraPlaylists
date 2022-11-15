@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import  ReactDOM  from 'react-dom';
 import Buttoncomp from './Components/buttoncomp';
 import Toolbar from './Components/Toolbar';
+import RegisterModal from './Components/registerModal';
 import 'antd/dist/antd.css';
 import './styles/styles.css'
 import axios from 'axios';
@@ -25,7 +26,7 @@ const App =()=> {
   const [items,updateItems] = useState([])
   const [playlists, updatePlaylists] = useState({})
   const [VideoName, updateVideoName] = useState('TEST')
-
+  
   const load =async()=>{
     let response = await fetch(`http://localhost:3001/app/playlists/allplaylists`)
       
