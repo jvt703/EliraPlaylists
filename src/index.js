@@ -26,7 +26,7 @@ const App =()=> {
   const [items,updateItems] = useState([])
   const [playlists, updatePlaylists] = useState({})
   const [VideoName, updateVideoName] = useState('TEST')
-  
+
   const load =async()=>{
     let response = await fetch(`http://localhost:3001/app/playlists/allplaylists`)
       
@@ -34,7 +34,7 @@ const App =()=> {
    
        let obj = {'PLcGP7PjybiCPpipQNJeuODyZoRerPv5Tk':data.items}
        //we should be binding the playlist name not playlist ID as the key
-       console.log(obj)
+    
        updatePlaylists(data)
        updateItems(data)
 }

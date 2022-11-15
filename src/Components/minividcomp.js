@@ -11,7 +11,7 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
     
       <div className="minivid" >
         {playlist.map((items, index) => {
-          console.log(items, "???")
+         
           return (
             <div
               style={{

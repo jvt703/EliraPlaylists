@@ -2,7 +2,7 @@ import React from "react";
 
 
 const YoutubeEmbed = ({ embedId, VideoName}) => {
-  console.log(VideoName,"embed")
+
   return(<div className="video-responsive">
     <iframe
         className="thevideo"
