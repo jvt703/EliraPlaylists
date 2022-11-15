@@ -17,23 +17,50 @@ const RegisterModal = ({ updateOpenModal }) => {
 
   const registerHandler = async (e) => {
     e.preventDefault();
-    if (registerObjData.password.length < 8) {
-      alert("Password Must Be At Least 8 Characters");
-    } else {
-      const response = await fetch(`http://localhost:3001/app/users/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registerObjData),
-      })
-        .then((response) => response.json())
-        .then((result) => {
-            console.log(result,"the results")
-            location.reload();
-        })
-        .catch(console.error);
+    try{
+        if (registerObjData.password.length < 8) {
+            alert("Password Must Be At Least 8 Characters");
+            } else {
+            const response = await fetch(`http://localhost:3001/app/users/register`, {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify(registerObjData),
+            })
+            
+            let data = await response.json()
+            console.log(data.user,"????")
+            if(data.user){
+                const token = await data.token;
+                const userId = await data.user.id
+                const myUsername = await data.user.username
+                const email = await  data.user.email
+                setUserToken(token);
+                setMyUsername(myUsername);
+                setUserId(userId);
+                setMyEmail(email);
+                localStorage.setItem('userToken', token);
+                localStorage.setItem('isAdmin', admin);
+                localStorage.setItem('myUsername', JSON.stringify(myUsername));
+                localStorage.setItem('userId', userId);
+                localStorage.setItem('email', email);
+
+
+
+            }
+            else{
+
+            }
+            }
+
+
     }
+    catch{
+
+    }
+    
+      
   };
 
   return (

@@ -21,11 +21,15 @@ const items = [
 
 //ok I gotta make a request for each of the playlists and put them together into one object response
 const App =()=> {    
-  const [titles,updateTitles] = useState([])
-  const [thumbnail,updateThumbnail] = useState([])
+  
   const [items,updateItems] = useState([])
   const [playlists, updatePlaylists] = useState({})
   const [VideoName, updateVideoName] = useState('TEST')
+  const [Token, setUserToken] = useState()
+  const [MyUsername, setMyUsername] = useState()
+  const [UserId, setUserId] = useState()
+  const [MyEmail, setMyEmail] = useState()
+
 
   const load =async()=>{
     let response = await fetch(`http://localhost:3001/app/playlists/allplaylists`)
@@ -46,7 +50,16 @@ const App =()=> {
             
             <Routes>
             <Route path="/" 
-            element={ <Toolbar items={items} playlists={playlists} VideoName={VideoName} updateVideoName={updateVideoName}/>} 
+            element={ <Toolbar items={items}
+             playlists={playlists} 
+             VideoName={VideoName}
+             updateVideoName={updateVideoName}
+             setUserToken ={setUserToken}
+             setMyEmail ={setMyEmail}
+             setMyUsername ={setMyUsername}
+             setUserId ={setUserId}
+             
+             />} 
             >
                 
             </Route>
