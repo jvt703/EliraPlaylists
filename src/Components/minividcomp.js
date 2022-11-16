@@ -10,7 +10,7 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
 
     const addtoplaylisthandler = ()=>{
 
-      
+
     }
   return (
   
@@ -26,7 +26,11 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
               className="OuterVideoDescription"
               key={index}
             >
-              <Button className="addButton">add</Button>
+              <div className="buttonContainer">
+              <Button className="addButton">Add</Button>
+              <Button className="favoriteButton">Favorite</Button>
+              </div>
+              
               <Link onClick={event=> clickHandler(event,items.snippet.title)} to={`/watch/${items.videoid}`}>
                 <img src={items.videourl}></img>
               </Link>

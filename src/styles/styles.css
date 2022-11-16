@@ -41,6 +41,7 @@
   width: 320px;
   color: #000;
   font-weight: bold;
+  position: relative;
 }
 .SoloVideoDescription {
   display: flex;
@@ -209,4 +210,12 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
     background-color: #0c0d0d;
+}
+.addButton {
+    display: block;
+    z-index: 5;
+}
+.buttonContainer {
+    display: flex;
+    position: absolute;
 }
