@@ -45,7 +45,6 @@ const loginHandler = async(e) =>{
           const userId =  data.user.id;
           const myUsername =  data.user.username;
           const email =  data.user.email;
-          console.log(setUserId, "it work?")
           setUserToken(token);
           setMyUsername(myUsername);
           setUserId(userId);

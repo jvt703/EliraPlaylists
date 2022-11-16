@@ -8,9 +8,20 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
         updateVideoName(items)
     }
 
-    const addtoplaylisthandler = ()=>{
-
-
+    const addtoplaylisthandler = async()=>{
+      
+      
+      const response = await fetch(
+          `http://localhost:3001/app/playlists/playlistadd`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              'Authorization': `Bearer ${userToken}`
+            },
+            body: JSON.stringify(registerObjData),
+          }
+        );
     }
   return (
   
@@ -27,7 +38,7 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
               key={index}
             >
               <div className="buttonContainer">
-              <Button className="addButton">Add</Button>
+              <Button className="addButton" onClick={()=>{addtoplaylisthandler(items)}}>Add</Button>
               <Button className="favoriteButton">Favorite</Button>
               </div>
               

@@ -53,6 +53,7 @@ const RegisterModal = ({
           localStorage.setItem("myUsername", JSON.stringify(myUsername));
           localStorage.setItem("userId", userId);
           localStorage.setItem("email", email);
+          updateOpenModal(false)
         } 
       }
     } catch {}

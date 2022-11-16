@@ -31,12 +31,7 @@ const App =()=> {
   const [UserId, setUserId] = useState('')
   const [MyEmail, setMyEmail] = useState('')
 
-  useEffect(()=>{
-    setMyEmail(localStorage.getItem('email'))
-    setMyUsername(localStorage.getItem('myUsername'))
-    setUserId(localStorage.getItem('userId'))
-    setUserToken(localStorage.getItem('userToken'))
-  },[])
+ 
 
   const load =async()=>{
     let response = await fetch(`http://localhost:3001/app/playlists/allplaylists`)
@@ -48,7 +43,13 @@ const App =()=> {
     
        updatePlaylists(data)
        updateItems(data)
-}
+} 
+useEffect(()=>{
+    setMyEmail(localStorage.getItem('email'))
+    setMyUsername(localStorage.getItem('myUsername'))
+    setUserId(localStorage.getItem('userId'))
+    setUserToken(localStorage.getItem('userToken'))
+  },[])
   useEffect(()=> load()
   ,[])
     
