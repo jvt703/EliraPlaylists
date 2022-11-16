@@ -95,11 +95,12 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, 
       setUserId ={setUserId}
       setOpenLoginModal = {setOpenLoginModal}
         ></LoginModal>}
+
       <Header className="Header">
        
       
-        {  !Token && <div><Button onClick={()=>{updateOpenModal(true)}}>REGISTER</Button> <Button onClick={()=>setOpenLoginModal(true)}>Login</Button></div> } 
-       { Token && <Button onClick={()=>signOutHandler()}>SignOut</Button>}
+        {  !Token ? <div><Button onClick={()=>{updateOpenModal(true)}}>REGISTER</Button> <Button onClick={()=>setOpenLoginModal(true)}>Login</Button></div> : <div><Button onClick={()=>signOutHandler()}>SignOut</Button></div> } 
+      
         <Buttoncomp></Buttoncomp>
        
       </Header>
