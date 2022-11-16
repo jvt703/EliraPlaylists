@@ -84,9 +84,11 @@
 }
 .PlaylistContainer {
     border: rgb(250, 184, 238) solid 2px;
-    border-radius: 5px;
+    border-radius: 8px;
     width: 100%;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 
@@ -203,4 +205,8 @@ vertical-align: middle;
   cursor: pointer;
   margin: 0 auto;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: #0c0d0d;
 }

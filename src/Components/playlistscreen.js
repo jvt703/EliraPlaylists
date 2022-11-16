@@ -2,6 +2,7 @@ import React from "react";
 import Minividcomp from "./minividcomp";
 import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
+import { Button } from "antd";
 
 const Playlistscreen  = ({playlist, updateVideoName, VideoName}) =>{
    const ref = useRef();

@@ -1,10 +1,16 @@
 import react, { useEffect } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 import {BrowserRouter as Router, Link} from 'react-router-dom'
+import { Button } from "antd";
 let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
     const clickHandler = (e, items) => {
        
         updateVideoName(items)
+    }
+
+    const addtoplaylisthandler = ()=>{
+
+      
     }
   return (
   
@@ -20,6 +26,7 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName }) => {
               className="OuterVideoDescription"
               key={index}
             >
+              <Button className="addButton">add</Button>
               <Link onClick={event=> clickHandler(event,items.snippet.title)} to={`/watch/${items.videoid}`}>
                 <img src={items.videourl}></img>
               </Link>

@@ -2,6 +2,7 @@ import {React, useState} from "react";
 import { Layout, Menu, Breadcrumb, Button, Divider } from "antd";
 import styles from "../styles/Toolbar.less";
 import YoutubeEmbed from "./screencomp";
+import { Link } from "react-router-dom";
 import {
   HomeOutlined,
   UnorderedListOutlined,
@@ -25,35 +26,19 @@ const items = [
 
 const sidebarLabels = [
   {
-    label: (
-      <a
-        href="/favorites"
-        target="_self"
-        rel="noopener noreferrer"
-        style={{ color: "white" }}
-      >
-        Favorites
-      </a>
-    ),
+    label: 
+      <Link to='/' style={{color: "white"}}>Home</Link>
+      ,
     key: "Home",
     icon: <HomeOutlined />,
   },
   {
-    label: "Playlist",
+    label:   <Link to='/playlists' style={{color: "white"}}>Playlists</Link>,
     key: "Playlist",
     icon: <UnorderedListOutlined />,
   },
   {
-    label: (
-      <a
-        href="/favorites"
-        target="_self"
-        rel="noopener noreferrer"
-        style={{ color: "white" }}
-      >
-        Favorites
-      </a>
-    ),
+    label: <Link to='/favorites' style={{color: "white"}}>Favorites</Link>,
     key: "Favorites",
     icon: <HeartOutlined />,
   },
