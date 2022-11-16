@@ -3,7 +3,7 @@ import Minividcomp from "./minividcomp";
 import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 import Playlistscreen from "./playlistscreen";
-const Playlistcomp = ({ playlists, updateVideoName, VideoName}) => {
+const Playlistcomp = ({ playlists, updateVideoName, VideoName, Token}) => {
   
 
   return (
@@ -11,7 +11,7 @@ const Playlistcomp = ({ playlists, updateVideoName, VideoName}) => {
       {Object.keys(playlists).map((key, index) => {
         return (<div className="PlaylistContainer" key={index}>
         <h3 className="Playlisttitle">{key}</h3>
-        <Playlistscreen playlist={playlists[key]} VideoName={VideoName} updateVideoName={updateVideoName}/>
+        <Playlistscreen playlist={playlists[key]} VideoName={VideoName} Token={Token} updateVideoName={updateVideoName}/>
         </div>) 
       })}
     </div>

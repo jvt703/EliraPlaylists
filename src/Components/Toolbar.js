@@ -130,7 +130,7 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, 
                 <YoutubeEmbed className="contents" VideoName={VideoName} embedId={videoId} />
               </div>
             ) : (
-              <Playlistcomp playlists={playlists} VideoName={VideoName} updateVideoName={updateVideoName} />
+              <Playlistcomp Token={Token} playlists={playlists} VideoName={VideoName} updateVideoName={updateVideoName} />
             )}
           </Content>
         </Layout>

@@ -104,6 +104,8 @@
 }
 .Playlisttitle {
   color: black;
+  margin-top: 15px;
+  font-size: 25px;
 }
 .Playlistssub {
   display: flex;
