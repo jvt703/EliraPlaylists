@@ -25,10 +25,10 @@ const App =()=> {
   const [items,updateItems] = useState([])
   const [playlists, updatePlaylists] = useState({})
   const [VideoName, updateVideoName] = useState('TEST')
-  const [Token, setUserToken] = useState()
-  const [MyUsername, setMyUsername] = useState()
-  const [UserId, setUserId] = useState()
-  const [MyEmail, setMyEmail] = useState()
+  const [Token, setUserToken] = useState('')
+  const [MyUsername, setMyUsername] = useState('')
+  const [UserId, setUserId] = useState('')
+  const [MyEmail, setMyEmail] = useState('')
 
 
   const load =async()=>{
@@ -58,12 +58,12 @@ const App =()=> {
              setMyEmail ={setMyEmail}
              setMyUsername ={setMyUsername}
              setUserId ={setUserId}
-             
+             Token={Token}
              />} 
             >
                 
             </Route>
-            <Route path='/watch/:videoId' element={ <Toolbar  items={items} />}>
+            <Route path='/watch/:videoId' element={ <Toolbar Token={Token} items={items} />}>
 
             </Route>
             </Routes>

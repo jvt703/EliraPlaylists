@@ -10,6 +10,7 @@ import {
 import Buttoncomp from "./buttoncomp";
 import { useParams } from "react-router-dom";
 import Playlistcomp from "./Playlistcomps";
+import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
 const { Header, Content, Sider } = Layout;
 const videos = ["gywvR9Erfl8"];
@@ -57,9 +58,22 @@ const sidebarLabels = [
     icon: <HeartOutlined />,
   },
 ];
-const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, setUserId, setUserToken, setMyEmail  }) => {
+const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, setUserId, setUserToken, setMyEmail, Token  }) => {
   const { videoId } = useParams();
   const [OpenModal, updateOpenModal] = useState(false)
+  const [OpenLoginModal, setOpenLoginModal] = useState(false)
+  const signOutHandler = ()=>{
+      localStorage.removeItem("userToken")
+      localStorage.removeItem("myUsername")
+      localStorage.removeItem("userId")
+      localStorage.removeItem("email")
+      setMyEmail(null)
+      setMyUsername(null)
+      setUserToken(null)
+      setUserId(null)
+  }
+
+
  
   return (
     <Layout
@@ -74,10 +88,20 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, 
       setMyUsername ={setMyUsername}
       setUserId ={setUserId}
       updateOpenModal={updateOpenModal}></RegisterModal>}
+       {OpenLoginModal && <LoginModal
+      setUserToken ={setUserToken}
+      setMyEmail ={setMyEmail}
+      setMyUsername ={setMyUsername}
+      setUserId ={setUserId}
+      setOpenLoginModal = {setOpenLoginModal}
+        ></LoginModal>}
       <Header className="Header">
-        
+       
+      
+        {  !Token && <div><Button onClick={()=>{updateOpenModal(true)}}>REGISTER</Button> <Button onClick={()=>setOpenLoginModal(true)}>Login</Button></div> } 
+       { Token && <Button onClick={()=>signOutHandler()}>SignOut</Button>}
         <Buttoncomp></Buttoncomp>
-        <button onClick={()=>{updateOpenModal(true)}}>REGISTER</button>
+       
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">

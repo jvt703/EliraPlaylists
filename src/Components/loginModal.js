@@ -1,50 +1,51 @@
 import { React, useRef, useState } from "react";
 
-const RegisterModal = ({
-  updateOpenModal,
+
+
+const LoginModal = ({
+  setOpenLoginModal,
   setMyUsername,
   setUserId,
   setUserToken,
   setMyEmail,
-}) => {
-  const modalRef = useRef();
-  const [registerObjData, setregisterObjData] = useState({});
+})=>{
+const modalRef = useRef();
+const [LoginObjdata, setLoginObjdata] = useState({})
 
-  const getInputs = (value, name) => {
+const getInputs = (value, name) => {
     let data = { [name]: value };
-    setregisterObjData({ ...registerObjData, ...data });
+    setLoginObjdata({ ...LoginObjdata, ...data });
   };
 
-  const closeModal = (e) => {
+
+const closeModal = (e) => {
     if (modalRef.current === e.target) {
-      updateOpenModal(false);
+      setOpenLoginModal(false);
     }
   };
+const loginHandler = async(e) =>{
+    e.preventDefault()
+    console.log("start")
 
-  const registerHandler = async (e) => {
-    e.preventDefault();
-    try {
-      if (registerObjData.password.length < 8) {
-        alert("Password Must Be At Least 8 Characters");
-      } else {
-        const response = await fetch(
-          `http://localhost:3001/app/users/register`,
-          {
+    try{
+        let response = await fetch(`http://localhost:3001/app/users/login`, 
+         {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(registerObjData),
+            body: JSON.stringify(LoginObjdata),
           }
-        );
+        )
 
-        let data = await response.json();
-        console.log(data.user, "????");
+        let data = await response.json()
+
         if (data.user) {
-          const token = data.token;
+          const token =  data.token;
           const userId =  data.user.id;
           const myUsername =  data.user.username;
           const email =  data.user.email;
+          console.log(setUserId, "it work?")
           setUserToken(token);
           setMyUsername(myUsername);
           setUserId(userId);
@@ -53,39 +54,34 @@ const RegisterModal = ({
           localStorage.setItem("myUsername", JSON.stringify(myUsername));
           localStorage.setItem("userId", userId);
           localStorage.setItem("email", email);
-        } 
-      }
-    } catch {}
-    
-  };
+        }
 
-  return (
+
+    }
+    catch{}
+setOpenLoginModal(false)
+
+}
+
+
+
+    return (
     <div className="modalBackground" ref={modalRef} onClick={closeModal}>
       <div className="modalContainer">
         <div className="modalClosebutton">
           <button
             onClick={() => {
-              updateOpenModal(false);
+              setOpenLoginModal(false);
             }}
           >
-            {" "}
-            X{" "}
+            X
           </button>
         </div>
         <div className="modalTitle">
-          <h1>Register a new account</h1>
+          <h1>Sign In</h1>
         </div>
-        <form onSubmit={registerHandler} id="registerForm">
+        <form onSubmit={loginHandler} id="loginForm">
           <div className="modalBody">
-            <label>Email</label>
-            <input
-              placeholder="Example@gmail.com"
-              name="email"
-              onChange={(e) => {
-                getInputs(e.target.value, e.target.name);
-              }}
-            ></input>
-
             <label>Username</label>
             <input
               placeholder="Username"
@@ -94,7 +90,6 @@ const RegisterModal = ({
                 getInputs(e.target.value, e.target.name);
               }}
             ></input>
-
             <label>Password</label>
             <input
               placeholder="Password"
@@ -106,13 +101,14 @@ const RegisterModal = ({
           </div>
         </form>
         <div className="modalFooter">
-          <button type="submit" form="registerForm">
+          <button type="submit" form="loginForm">
             Submit
           </button>
         </div>
       </div>
     </div>
   );
-};
 
-export default RegisterModal;
+}
+
+export default LoginModal

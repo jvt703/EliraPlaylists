@@ -106,6 +106,7 @@
   background-image: url("../img/1183298.jpg");
 }
 .Header {
+    display: flex;
   position: sticky;
   top: 0;
   z-index: 999;
@@ -124,7 +125,7 @@
   width: 500px;
   height: 500px;
   border-radius: 12px;
-  background-color: white;
+background-color: #dfdfdf;
   opacity: 1;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding: 10px;
@@ -135,6 +136,7 @@
 .modalClosebutton {
   display: flex;
   justify-content: flex-end;
+  height: 5px;
 }
 .modalClosebutton button {
   background-color: transparent;
@@ -144,12 +146,26 @@
 }
 
 .modalTitle {
-
+    display: flex;
+    border-radius: 10px;
+    justify-content: center;
+    color: white;
+    margin: auto;
+    text-align: center;
+    background-color: cornflowerblue;
+    width: 300px;
 }
 
+.modalTitle h1{
+color: white;
+vertical-align: middle;
+
+}
 .modalBody {
+    margin-top: 40px;
   display: flex;
   flex-direction: column;
+  font-size: larger;
 }
 .modalInput {
   display: flex;
