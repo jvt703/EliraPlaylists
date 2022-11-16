@@ -1,8 +1,8 @@
-import {React, useState} from "react";
+import { React, useState, useEffect } from "react";
 import { Layout, Menu, Breadcrumb, Button, Divider } from "antd";
 import styles from "../styles/Toolbar.less";
 import YoutubeEmbed from "./screencomp";
-import { Link } from "react-router-dom";
+import { Link, useMatch, useLocation } from "react-router-dom";
 import {
   HomeOutlined,
   UnorderedListOutlined,
@@ -26,41 +26,93 @@ const items = [
 
 const sidebarLabels = [
   {
-    label: 
-      <Link to='/' style={{color: "white"}}>Home</Link>
-      ,
+    label: (
+      <Link to="/" style={{ color: "white" }}>
+        Home
+      </Link>
+    ),
     key: "Home",
     icon: <HomeOutlined />,
   },
   {
-    label:   <Link to='/playlists' style={{color: "white"}}>Playlists</Link>,
+    label: (
+      <Link to="/playlists" style={{ color: "white" }}>
+        Playlists
+      </Link>
+    ),
     key: "Playlist",
     icon: <UnorderedListOutlined />,
   },
   {
-    label: <Link to='/favorites' style={{color: "white"}}>Favorites</Link>,
+    label: (
+      <Link to="/favorites" style={{ color: "white" }}>
+        Favorites
+      </Link>
+    ),
     key: "Favorites",
     icon: <HeartOutlined />,
   },
 ];
-const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, setUserId, setUserToken, setMyEmail, Token  }) => {
-  const { videoId } = useParams();
-  const [OpenModal, updateOpenModal] = useState(false)
-  const [OpenLoginModal, setOpenLoginModal] = useState(false)
-  const signOutHandler = ()=>{
-      localStorage.removeItem("userToken")
-      localStorage.removeItem("myUsername")
-      localStorage.removeItem("userId")
-      localStorage.removeItem("email")
-      setMyEmail(null)
-      setMyUsername(null)
-      setUserToken(null)
-      setUserId(null)
-  }
-  console.log(playlists, "playlists")
-
-
+const Toolbar = ({
  
+            setUserToken,
+             setMyEmail,
+             setMyUsername,
+             setUserId,
+            Token,
+            path
+  
+}) => {
+  const { videoId } = useParams();
+  const [OpenModal, updateOpenModal] = useState(false);
+  const [OpenLoginModal, setOpenLoginModal] = useState(false);
+  const [playlists, updatePlaylists] = useState({})
+  const load = async () => {
+    
+    if (path =="home") {
+      let response = await fetch(
+        `http://localhost:3001/app/playlists/allplaylists`
+      );
+      let data = await response.json();
+      console.log(data)
+      updatePlaylists(data);
+    } else if (path == "playlist") {
+      let headers = {'Authorization': `Bearer ${Token}`}
+      let response = await fetch(
+        `http://localhost:3001/app/playlists/playlists`,{
+        headers
+        }
+      );
+      let data = await response.json();
+      updatePlaylists(data);
+    }
+    
+
+    
+
+    //we should be binding the playlist name not playlist ID as the key
+
+    
+  };
+  useEffect(() => {
+    setMyEmail(localStorage.getItem("email"));
+    setMyUsername(localStorage.getItem("myUsername"));
+    setUserId(localStorage.getItem("userId"));
+    setUserToken(localStorage.getItem("userToken"));
+  }, []);
+  useEffect(() => load(), [path]);
+
+  const signOutHandler = () => {
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("myUsername");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("email");
+    setMyEmail(null);
+    setMyUsername(null);
+    setUserToken(null);
+    setUserId(null);
+  };
+
   return (
     <Layout
       style={{
@@ -68,27 +120,44 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, 
         height: "100%",
       }}
     >
-      {OpenModal&&<RegisterModal 
-      setUserToken ={setUserToken}
-      setMyEmail ={setMyEmail}
-      setMyUsername ={setMyUsername}
-      setUserId ={setUserId}
-      updateOpenModal={updateOpenModal}></RegisterModal>}
-       {OpenLoginModal && <LoginModal
-      setUserToken ={setUserToken}
-      setMyEmail ={setMyEmail}
-      setMyUsername ={setMyUsername}
-      setUserId ={setUserId}
-      setOpenLoginModal = {setOpenLoginModal}
-        ></LoginModal>}
+      {OpenModal && (
+        <RegisterModal
+          setUserToken={setUserToken}
+          setMyEmail={setMyEmail}
+          setMyUsername={setMyUsername}
+          setUserId={setUserId}
+          updateOpenModal={updateOpenModal}
+        ></RegisterModal>
+      )}
+      {OpenLoginModal && (
+        <LoginModal
+          setUserToken={setUserToken}
+          setMyEmail={setMyEmail}
+          setMyUsername={setMyUsername}
+          setUserId={setUserId}
+          setOpenLoginModal={setOpenLoginModal}
+        ></LoginModal>
+      )}
 
       <Header className="Header">
-       
-      
-        {  !Token ? <div><Button onClick={()=>{updateOpenModal(true)}}>REGISTER</Button> <Button onClick={()=>setOpenLoginModal(true)}>Login</Button></div> : <div><Button onClick={()=>signOutHandler()}>SignOut</Button></div> } 
-      
+        {!Token ? (
+          <div>
+            <Button
+              onClick={() => {
+                updateOpenModal(true);
+              }}
+            >
+              REGISTER
+            </Button>{" "}
+            <Button onClick={() => setOpenLoginModal(true)}>Login</Button>
+          </div>
+        ) : (
+          <div>
+            <Button onClick={() => signOutHandler()}>SignOut</Button>
+          </div>
+        )}
+
         <Buttoncomp></Buttoncomp>
-       
       </Header>
       <Layout>
         <Sider width={200} className="site-layout-background">
@@ -126,11 +195,19 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, 
                 }}
                 className="SoloVideoDescription"
               >
-                <span>Title: {VideoName}</span>
-                <YoutubeEmbed className="contents" VideoName={VideoName} embedId={videoId} />
+                <span>Title: </span>
+                <YoutubeEmbed
+                  className="contents"
+                  VideoName={VideoName}
+                  embedId={videoId}
+                />
               </div>
             ) : (
-              <Playlistcomp Token={Token} playlists={playlists} VideoName={VideoName} updateVideoName={updateVideoName} />
+              <Playlistcomp
+                Token={Token}
+                playlists={playlists}
+
+              />
             )}
           </Content>
         </Layout>

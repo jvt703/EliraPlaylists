@@ -1,15 +1,14 @@
 import react, { useEffect } from "react";
 import { Fragment } from "react/cjs/react.production.min";
-import {BrowserRouter as Router, Link} from 'react-router-dom'
+import {BrowserRouter as Router, Link, useMatch} from 'react-router-dom'
 import { Button } from "antd";
 let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName, Token }) => {
     const clickHandler = (e, items) => {
        
         updateVideoName(items)
     }
-
+ const location = useMatch("/playlists")
     const addtoplaylisthandler = async(items)=>{
-      console.log("ok")
       let videoObject = {"videoid": items.videoid, "playlistid":"Favorites", "videoname": items.videoname, "videourl": items.videourl, "position": 0}
       const response = await fetch(
           `http://localhost:3001/app/playlists/playlistadd`,
@@ -37,10 +36,11 @@ let Minividcomp = ({ playlist, Thekey, updateVideoName, VideoName, Token }) => {
               className="OuterVideoDescription"
               key={index}
             >
-              <div className="buttonContainer">
+              {!location&&<div className="buttonContainer">
               <Button className="addButton" onClick={()=>{addtoplaylisthandler(items)}}>Add</Button>
               <Button className="favoriteButton">Favorite</Button>
-              </div>
+              </div>}
+              
               
               <Link onClick={event=> clickHandler(event,items.snippet.title)} to={`/watch/${items.videoid}`}>
                 <img src={items.videourl}></img>

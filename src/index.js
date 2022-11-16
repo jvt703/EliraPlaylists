@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes, useLocation } from "react-router-dom";
 import  ReactDOM  from 'react-dom';
 import Buttoncomp from './Components/buttoncomp';
 import Toolbar from './Components/Toolbar';
@@ -31,27 +31,16 @@ const App =()=> {
   const [UserId, setUserId] = useState('')
   const [MyEmail, setMyEmail] = useState('')
 
- 
 
-  const load =async()=>{
-    let response = await fetch(`http://localhost:3001/app/playlists/allplaylists`)
-      
-       let data = await response.json()
-   
-       let obj = {'PLcGP7PjybiCPpipQNJeuODyZoRerPv5Tk':data.items}
-       //we should be binding the playlist name not playlist ID as the key
-    
-       updatePlaylists(data)
-       updateItems(data)
-} 
 useEffect(()=>{
     setMyEmail(localStorage.getItem('email'))
     setMyUsername(localStorage.getItem('myUsername'))
     setUserId(localStorage.getItem('userId'))
     setUserToken(localStorage.getItem('userToken'))
+   
   },[])
-  useEffect(()=> load()
-  ,[])
+//   useEffect(()=> load()
+//   ,[])
     
     return (
         <Router>
@@ -60,10 +49,10 @@ useEffect(()=>{
 
               
             <Route path="/" 
-            element={ <Toolbar items={items}
+            element={ <Toolbar 
+             items={items}
+             path ="home"
              playlists={playlists} 
-             VideoName={VideoName}
-             updateVideoName={updateVideoName}
              setUserToken ={setUserToken}
              setMyEmail ={setMyEmail}
              setMyUsername ={setMyUsername}
@@ -74,17 +63,18 @@ useEffect(()=>{
                 
             </Route>
             <Route path='/watch/:videoId' element={ <Toolbar
+            path = "player"
+            playlists={MyPlaylists} 
             setUserToken ={setUserToken}
              setMyEmail ={setMyEmail}
              setMyUsername ={setMyUsername}
              setUserId ={setUserId}
-            Token={Token} 
-            items={items} />}>
+            Token={Token} />}>
             </Route>
             <Route path='/playlists' 
             element={ <Toolbar
+            path = "playlist"
             playlists={MyPlaylists} 
-            updatePlaylists ={updatePlaylists}
             setUserToken ={setUserToken}
              setMyEmail ={setMyEmail}
              setMyUsername ={setMyUsername}
@@ -94,8 +84,6 @@ useEffect(()=>{
             }
             
             >
-
-
             </Route>
             </Routes>
 
