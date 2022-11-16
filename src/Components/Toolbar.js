@@ -72,6 +72,7 @@ const Toolbar = ({ items, playlists, updateVideoName, VideoName, setMyUsername, 
       setUserToken(null)
       setUserId(null)
   }
+  console.log(playlists, "playlists")
 
 
  

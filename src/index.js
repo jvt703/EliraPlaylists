@@ -24,6 +24,7 @@ const App =()=> {
   
   const [items,updateItems] = useState([])
   const [playlists, updatePlaylists] = useState({})
+  const [MyPlaylists, setMyPlaylists] = useState({"test":[]})
   const [VideoName, updateVideoName] = useState('TEST')
   const [Token, setUserToken] = useState('')
   const [MyUsername, setMyUsername] = useState('')
@@ -55,6 +56,8 @@ const App =()=> {
         <Router>
             
             <Routes>
+
+              
             <Route path="/" 
             element={ <Toolbar items={items}
              playlists={playlists} 
@@ -69,7 +72,28 @@ const App =()=> {
             >
                 
             </Route>
-            <Route path='/watch/:videoId' element={ <Toolbar Token={Token} items={items} />}>
+            <Route path='/watch/:videoId' element={ <Toolbar
+            setUserToken ={setUserToken}
+             setMyEmail ={setMyEmail}
+             setMyUsername ={setMyUsername}
+             setUserId ={setUserId}
+            Token={Token} 
+            items={items} />}>
+            </Route>
+            <Route path='/playlists' 
+            element={ <Toolbar
+            playlists={MyPlaylists} 
+            updatePlaylists ={updatePlaylists}
+            setUserToken ={setUserToken}
+             setMyEmail ={setMyEmail}
+             setMyUsername ={setMyUsername}
+             setUserId ={setUserId}
+            Token={Token} 
+            />
+            }
+            
+            >
+
 
             </Route>
             </Routes>
