@@ -84,6 +84,7 @@ const App = () => {
               playlists={playlists}
               setUserToken={setUserToken}
               setMyEmail={setMyEmail}
+              MyUsername={MyUsername}
               setMyUsername={setMyUsername}
               setUserId={setUserId}
               Token={Token}
@@ -102,6 +103,7 @@ const App = () => {
               playlists={playlists}
               setUserToken={setUserToken}
               setMyEmail={setMyEmail}
+              MyUsername={MyUsername}
               setMyUsername={setMyUsername}
               setUserId={setUserId}
               Token={Token}
@@ -118,6 +120,7 @@ const App = () => {
               setUserToken={setUserToken}
               setPlaylists={setPlaylists}
               setMyEmail={setMyEmail}
+              MyUsername={MyUsername}
               setMyUsername={setMyUsername}
               setUserId={setUserId}
               Token={Token}

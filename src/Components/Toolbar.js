@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { Layout, Menu, Breadcrumb, Button, Divider } from "antd";
 import styles from "../styles/Toolbar.less";
 import YoutubeEmbed from "./screencomp";
-import { Link, useMatch, useLocation } from "react-router-dom";
+import { Link, useMatch, useLocation, useNavigate } from "react-router-dom";
 import {
   HomeOutlined,
   UnorderedListOutlined,
@@ -55,6 +55,7 @@ const sidebarLabels = [
 ];
 const Toolbar = ({
   setPath,
+  MyUsername,
   path,
   setPlaylists,
   playlists,
@@ -68,6 +69,7 @@ const Toolbar = ({
   const [OpenModal, updateOpenModal] = useState(false);
   const [OpenLoginModal, setOpenLoginModal] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate()
   const load = async () => {
     console.log(location.pathname)
     setPath(location.pathname)
@@ -90,7 +92,7 @@ const Toolbar = ({
     setMyUsername(null);
     setUserToken(null);
     setUserId(null);
-    window.location.reload();
+    navigate("/")
   };
 
   return (
@@ -133,6 +135,7 @@ const Toolbar = ({
           </div>
         ) : (
           <div>
+            {MyUsername}
             <Button onClick={() => signOutHandler()}>SignOut</Button>
           </div>
         )}

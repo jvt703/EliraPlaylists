@@ -50,7 +50,7 @@ const loginHandler = async(e) =>{
           setUserId(userId);
           setMyEmail(email);
           localStorage.setItem("userToken", token);
-          localStorage.setItem("myUsername", JSON.stringify(myUsername));
+          localStorage.setItem("myUsername", myUsername);
           localStorage.setItem("userId", userId);
           localStorage.setItem("email", email);
         }
@@ -93,6 +93,7 @@ setOpenLoginModal(false)
             <input
               placeholder="Password"
               name="password"
+              type="password"
               onChange={(e) => {
                 getInputs(e.target.value, e.target.name);
               }}
