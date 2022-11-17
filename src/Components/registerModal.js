@@ -39,7 +39,7 @@ const RegisterModal = ({
         );
 
         let data = await response.json();
-        console.log(data.user, "????");
+  
         if (data.user) {
           const token = data.token;
           const userId =  data.user.id;

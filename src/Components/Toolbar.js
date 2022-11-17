@@ -54,45 +54,24 @@ const sidebarLabels = [
   },
 ];
 const Toolbar = ({
- 
-            setUserToken,
-             setMyEmail,
-             setMyUsername,
-             setUserId,
-            Token,
-            path
-  
+  setPath,
+  path,
+  setPlaylists,
+  playlists,
+  setUserToken,
+  setMyEmail,
+  setMyUsername,
+  setUserId,
+  Token,
 }) => {
   const { videoId } = useParams();
   const [OpenModal, updateOpenModal] = useState(false);
   const [OpenLoginModal, setOpenLoginModal] = useState(false);
-  const [playlists, updatePlaylists] = useState({})
+  const location = useLocation();
   const load = async () => {
-    
-    if (path =="home") {
-      let response = await fetch(
-        `http://localhost:3001/app/playlists/allplaylists`
-      );
-      let data = await response.json();
-      console.log(data)
-      updatePlaylists(data);
-    } else if (path == "playlist") {
-      let headers = {'Authorization': `Bearer ${Token}`}
-      let response = await fetch(
-        `http://localhost:3001/app/playlists/playlists`,{
-        headers
-        }
-      );
-      let data = await response.json();
-      updatePlaylists(data);
-    }
-    
-
-    
-
+    console.log(location.pathname)
+    setPath(location.pathname)
     //we should be binding the playlist name not playlist ID as the key
-
-    
   };
   useEffect(() => {
     setMyEmail(localStorage.getItem("email"));
@@ -100,7 +79,7 @@ const Toolbar = ({
     setUserId(localStorage.getItem("userId"));
     setUserToken(localStorage.getItem("userToken"));
   }, []);
-  useEffect(() => load(), [path]);
+  useEffect(() => load(), [location]);
 
   const signOutHandler = () => {
     localStorage.removeItem("userToken");
@@ -111,6 +90,7 @@ const Toolbar = ({
     setMyUsername(null);
     setUserToken(null);
     setUserId(null);
+    window.location.reload();
   };
 
   return (
@@ -196,18 +176,10 @@ const Toolbar = ({
                 className="SoloVideoDescription"
               >
                 <span>Title: </span>
-                <YoutubeEmbed
-                  className="contents"
-                  VideoName={VideoName}
-                  embedId={videoId}
-                />
+                <YoutubeEmbed className="contents" embedId={videoId} />
               </div>
             ) : (
-              <Playlistcomp
-                Token={Token}
-                playlists={playlists}
-
-              />
+              <Playlistcomp Token={Token} setPlaylists={setPlaylists} playlists={playlists} />
             )}
           </Content>
         </Layout>

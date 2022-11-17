@@ -25,7 +25,7 @@ const closeModal = (e) => {
   };
 const loginHandler = async(e) =>{
     e.preventDefault()
-    console.log("start")
+  
 
     try{
         let response = await fetch(`http://localhost:3001/app/users/login`, 

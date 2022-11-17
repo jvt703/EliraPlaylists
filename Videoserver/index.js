@@ -12,7 +12,7 @@ app.get("/", function (req, res) {
 
 app.get('/video/:videoID', function(req, res){
     const range = req.headers.range;
-    console.log(req.params.videoID,  'here')
+  
     if (!range){
         res.status(400).send("Requires Range Header")
     }
@@ -39,5 +39,5 @@ app.get('/video/:videoID', function(req, res){
 )
 
 app.listen(8000, function () {
-  console.log("Listening on port 8000!");
+
 });
