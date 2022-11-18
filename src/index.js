@@ -52,8 +52,8 @@ const App = () => {
       let data = await response.json();
       setPlaylists(data);
     } else if (path == "/playlists") {
-      console.log("starting")
-      let headers = { Authorization: `Bearer ${Token}` };
+      console.log("starting", Token)
+      let headers = { Authorization: `Bearer ${Token||localStorage.getItem("userToken")}` };
       let response = await fetch(
         `http://localhost:3001/app/playlists/playlists`,
         {

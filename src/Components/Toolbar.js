@@ -14,15 +14,9 @@ import Playlistcomp from "./Playlistcomps";
 import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
 const { Header, Content, Sider } = Layout;
-const videos = ["gywvR9Erfl8"];
-// ,'nCQ_zZIiGLA', '9KVH2ZP060c', '5J7dshcivGg', '-vOjy-igzhk'
 
-const items = [
-  {
-    label: "EliraPage",
-    key: "EliraPage",
-  },
-];
+
+
 
 const sidebarLabels = [
   {

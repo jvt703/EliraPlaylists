@@ -39,7 +39,7 @@ const RegisterModal = ({
         );
 
         let data = await response.json();
-  
+
         if (data.user) {
           const token = data.token;
           const userId =  data.user.id;
@@ -50,11 +50,14 @@ const RegisterModal = ({
           setUserId(userId);
           setMyEmail(email);
           localStorage.setItem("userToken", token);
-          localStorage.setItem("myUsername", JSON.stringify(myUsername));
+          localStorage.setItem("myUsername", myUsername);
           localStorage.setItem("userId", userId);
           localStorage.setItem("email", email);
           updateOpenModal(false)
         } 
+        else if(data.name=="UserExistsError"){
+            alert(data.message)
+        }
       }
     } catch {}
     
